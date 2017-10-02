@@ -40,7 +40,7 @@
 
 	startNum = (pageNum - 1) * size;
 
-	List<ServerOrder> list = ServerOrderService.getLimitData(startNum, size);
+	List<ServerOrder> list = ServerOrderService.getInstance().getLimitData(startNum, size);
 %>
 
 <!DOCTYPE html>

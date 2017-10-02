@@ -9,8 +9,8 @@
 		response.sendRedirect("AdminLogIn.jsp");
 	}
 	
-	List<ServerOrder> lists = ServerOrderService.getTodayOrderGet();
-	Collections.reverse(lists);
+	List<ServerOrder> lists = ServerOrderService.getInstance().getUserOrderByStatus(null, 1, null);
+// 	Collections.reverse(lists);
 %>
 
 <!DOCTYPE html>

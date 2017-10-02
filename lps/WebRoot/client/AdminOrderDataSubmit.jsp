@@ -1,7 +1,9 @@
-10<%@page import="com.cyl.user.UserService"%>
+<%@page import="com.cyl.basic.OrderStatusService"%>
+<%@page import="org.omg.PortableServer.IdUniquenessPolicy"%>
+<%@page import="com.cyl.user.UserService"%>
 <%@ page language="java" import="java.util.*,com.cyl.work.*"
 	pageEncoding="utf-8"%>
-<%@ page import="com.cyl.util.*"%>
+<%@ page import="com.cyl.util.*, com.cyl.user.*"%>
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -12,28 +14,31 @@
 	}
 	
 // System.out.println("request.getParameter(id) : " + request.getParameter("id"));
-	String idStr = request.getParameter("id");
-	int id = 0;
-System.out.println("idStr : " + idStr);
-	if(idStr == null){
-// System.out.println( request.getContextPath() + "idStr = 0;  id = " + id);
-		id = UserService.getIdByWorkRank(idUser);
-	}else{
-		id = Integer.parseInt(request.getParameter("id"));  //牌号
-	}
-// System.out.println( request.getContextPath() + " id = " + id);
+	String idUserName = request.getParameter("idUser");
+	
+// System.out.println("idUserName : " + idUserName);
+	User u = null;
+	if(idUserName != null)
+		u = UserService.getInstance().getUserByIdUser(idUserName);
+	else
+		return;
+	
 	String idRoom = request.getParameter("idRoom");  //房间号
 	String clockCatagory = request.getParameter("clockcatagory");  //钟点类型
 	
-	ServerOrder item = new ServerOrder();
-	item.setIdUser(UserService.getUserNameById(id));
-	item.setIdRoom(idRoom);
-	item.setIdOrder(ServerOrderService.createId(item.getId(), item.getIdRoom()));
-	item.setClockCatagory(clockCatagory);
-	item.setStatus(OrderStatus.getStatus("os1"));
-	item.setId(id);
+	ServerOrderService sos = ServerOrderService.getInstance();
 	
-	boolean issuc = ServerOrderService.load(item);
+	ServerOrder item = new ServerOrder();
+	item.setIdUser(u.getIdUser());
+	item.setId(u.getId());
+	item.setIdRoom(idRoom);
+	item.setIdOrder(sos.createId(u.getId(), idRoom));
+	
+	item.setStatus(OrderStatusService.getInstance().getOrderStatusByNum(1).getOrderStatus());
+	item.setClockCatagory(clockCatagory);
+	item.setAddTime(ServerOrderService.getCurTimestamp());
+	
+	boolean issuc = sos.load(item);
 
 %>
 

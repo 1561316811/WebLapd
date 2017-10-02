@@ -26,7 +26,7 @@
 	}else{
 		for(String n: idRooms){
 			Room c = new Room(n);
-			RoomService.del(c);
+			RoomService.getInstance().del(c);
 		}
 		response.sendRedirect("RoomDataManage.jsp?idAdmin=" + idAdmin + "&pageNum=" + pageNum);
 	}

@@ -1,3 +1,4 @@
+<%@page import="com.cyl.basic.OrderStatusService"%>
 <%@ page language="java" import="java.util.*,com.cyl.work.*,java.text.*"
 	pageEncoding="utf-8"%>
 <%@ page import="com.cyl.util.*"%>
@@ -9,7 +10,8 @@
 		response.sendRedirect("AdminLogIn.jsp");
 	}
 	
-	List<ServerOrder> lists = ServerOrderService.getTodayOrderFinish();
+	List<ServerOrder> lists = ServerOrderService.getInstance()
+			.getUserOrderByStatus(null, 4, null);
 	Collections.reverse(lists);
 	
 %>

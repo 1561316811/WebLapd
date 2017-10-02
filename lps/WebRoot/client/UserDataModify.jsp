@@ -8,7 +8,7 @@
 		response.sendRedirect("UserLogIn.jsp");
 	}
 
-	User u = UserService.getByID(idUser);
+	User u = UserService.getInstance().getUserByIdUser(idUser);
 %>
 
 <html>

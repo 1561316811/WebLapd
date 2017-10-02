@@ -25,8 +25,7 @@
 		
 	}else{
 		for(String n: id){
-			User c = new User(n);
-			UserService.del(c);
+			UserService.getInstance().del(n);
 		}
 		response.sendRedirect("StuffDataManage.jsp?idAdmin=" + idAdmin + "&pageNum=" + pageNum);
 	}

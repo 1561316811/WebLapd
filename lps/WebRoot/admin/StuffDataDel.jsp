@@ -19,8 +19,7 @@
 	if(idUser == null || idUser.equals("")){
 		
 	}else{
-		User r = new User(idUser);
-		UserService.del(r);
+		UserService.getInstance().del(idUser);
 		response.sendRedirect("StuffDataManage.jsp?idAdmin=" + idAdmin + "&pageNum=" + pageNum);
 	}
 	

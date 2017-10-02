@@ -19,17 +19,29 @@
 		String password = request.getParameter("password");
 		/*  */
 		try {
-			UserService.checkLogIn(idUser, password);
+			UserService.getInstance().checkLogIn(idUser, password);
 		} catch (UserInformationErrorException e) {
 			isError = true;
 			System.out.println(e.getMessage());
 		}
 		if (isError == false) { //条件成立，登入成功
-			User user = new User(idUser);
+// 			User user = new User(idUser);
+			User user = UserService.getInstance().getUserByIdUser(idUser);
+			user.setPassword(password);
+			
 			session.setAttribute(idUser, user);
-			int id = UserService.getIdByUserName(idUser);  
+			int id = user.getId();  
 			//载入上钟排队信息
 			WorkRankService.load(new WorkRank(id));
+			
+			//先默认签到，方便测试
+			//登录
+// 			System.out.println("logIn : " + UserService.getInstance().logIn(user)); 
+			UserService.getInstance().logIn(user);
+			//注册
+			UserService.getInstance().signIn(user);
+			
+			
 			response.sendRedirect("Center.jsp?idUser=" + user.getIdUser());
 			
 		}

@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*,com.cyl.sql.*, java.sql.*"
 	pageEncoding="utf-8"%>
-<%@ page import="com.cyl.admin.*, com.cyl.admin.catagory.*"%>
+<%@ page import="com.cyl.admin.*,com.cyl.basic.*"%>
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -22,9 +22,9 @@
 		response.getWriter().write("<p>数据为空\n</p>");
 	}
 	else{
-		Catagory oc = new Catagory(oldName.trim());
-		Catagory nc = new Catagory(newName.trim());
-		CatagoryService.modify(oc, nc);
+		RoomCatagory oc = new RoomCatagory(0,oldName.trim());
+		RoomCatagory nc = new RoomCatagory(0,newName.trim());
+		RoomCatagoryService.getInstance().modify(oc, nc);
 		response.getWriter().write("<p>修改成功\n</p>");
 	}
 	response.getWriter().flush();

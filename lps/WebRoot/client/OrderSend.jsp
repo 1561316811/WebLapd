@@ -11,9 +11,9 @@
 		response.sendRedirect("UserLogIn.jsp");
 	}
 
-	List<Room> list = RoomService.getLimitData(0, RoomService.getNum());
+	List<Room> list = RoomService.getInstance().getLimitData(0, RoomService.getInstance().getNum());
 
-	List<ClockCatagory> listcc = ClockCatagoryService.getLimitData(0, ClockCatagoryService.getNum());
+	List<ClockCatagory> listcc = ClockCatagoryService.getInstance().getLimitData(0, ClockCatagoryService.getInstance().getNum());
 %>
 
 <!DOCTYPE html>

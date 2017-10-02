@@ -2,27 +2,21 @@
 	pageEncoding="utf-8"%>
 <%@ page import="com.cyl.admin.*"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-
-<%
 	request.setCharacterEncoding("utf-8");
 	boolean isError = false;
 	String action = request.getParameter("action");
 	if (action != null && action.equals("logIn")) {
-		Connection conn = DBService.getConn();
+	
 		String idAdmin = request.getParameter("idAdmin");
 		String password = request.getParameter("password");
 		/*  */
 // 		System.out.println(idAdmin + password);
 		try {
-			AdminService.checkLogIn(idAdmin, password);
+			AdminService.getInstance().checkLogIn(idAdmin, password);
 		} catch (AdminInformationErrorException e) {
 			isError = true;
 // System.out.println("Catch AdminInformationErrorException");
-			System.out.println(e.getMessage());
+// 			System.out.println(e.getMessage());
 		}
 		if (isError == false) { //信息没有错误，登入成功
 			Admin user = new Admin(idAdmin);

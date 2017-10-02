@@ -1,7 +1,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.cyl.basic.*"%>
 <%@ page language="java"
-	import="java.util.*,com.cyl.work.*,com.cyl.admin.room.*,com.cyl.admin.paypath.*"
+	import="java.util.*,com.cyl.work.*,com.cyl.admin.room.*"
 	pageEncoding="utf-8"%>
 <%@ page import="com.cyl.util.*"%>
 
@@ -13,8 +13,10 @@
 		response.sendRedirect("AdminLogIn.jsp");
 	}
 
-	ServerOrder s = ServerOrderService.getOrderByIdOrder(idOrder); //根据订单号获取时间
-	List<PayPath> listpp = PayPathService.getLimitData(0, PayPathService.getNum());
+	 //根据订单号获取时间
+	ServerOrder s = ServerOrderService.getInstance()
+	.getOrderByIdOrder(idOrder);
+	List<PayPath> listpp = PayPathService.getInstance().getLimitData(1, PayPathService.getInstance().getNum());
 %>
 
 <!DOCTYPE html>

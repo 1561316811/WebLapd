@@ -24,7 +24,7 @@
 		isSuss = false;
 	}else{
 		Room r = new Room(idRoom);
-		isSuss = RoomService.del(r);
+		isSuss = RoomService.getInstance().del(r);
 	}
 	if(isSuss){
 		cont = "删除成功";

@@ -10,9 +10,10 @@
 	String idOrder = request.getParameter("idOrder");
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
 		response.sendRedirect("UserLogIn.jsp");
+		return;
 	}
 
-	ServerOrder s = ServerOrderService.getOrderByIdOrder(idOrder);
+	ServerOrder s = ServerOrderService.getInstance().getOrderByIdOrder(idOrder);
 %>
 
 <!DOCTYPE html>

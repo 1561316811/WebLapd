@@ -19,7 +19,7 @@ if(action != null && action.equals("register")){
 // 	System.out.print("user.getQuestion() : " + user.getQuestion());
 	user.setAnswer(request.getParameter("answer"));
 // 	System.out.println("request.getParameter('answer') : " + request.getParameter("answer"));
-	UserService.add(user);
+	UserService.getInstance().add(user);
 	response.sendRedirect("UserLogIn.jsp");
 }
  %>

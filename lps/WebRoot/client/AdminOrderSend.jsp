@@ -5,17 +5,25 @@
 	pageEncoding="utf-8"%>
 <%@ page import="com.cyl.util.*"%>
 
+
 <%
 	request.setCharacterEncoding("utf-8");
 	String idUser = request.getParameter("idAdmin");
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
 		response.sendRedirect("AdminLogIn.jsp");
 	}
-	List<User> listUid = UserService.getUserId();
-
-	List<Room> list = RoomService.getLimitData(0, RoomService.getNum());
+// 	System.out.println(0);
+// 	System.out.println("UserService.getInstance().getNum() : " + UserService.getInstance().getNum());
+	List<User> listUid = UserService.getInstance()
+				.getLimitData(1, UserService.getInstance().getNum());
+// 	System.out.println(listUid.size());
+	List<Room> list = RoomService.getInstance().getLimitData(1, RoomService.getInstance().getNum());
+// 	System.out.println(2);
 	//钟点类型
-	List<ClockCatagory> listcc = ClockCatagoryService.getLimitData(0, ClockCatagoryService.getNum());
+	List<ClockCatagory> listcc = ClockCatagoryService.getInstance().getLimitData(1, ClockCatagoryService.getInstance().getNum());
+	
+// 	System.out.println(ClockCatagoryService.getInstance().getNum());
+// 	System.out.println(3);
 %>
 
 <!DOCTYPE html>
@@ -66,13 +74,13 @@
 					</tr>
 					<tr id="id">
 						<td>牌号</td>
-						<td style="width: 100px;"><select name="id" id="valueId">
+						<td style="width: 100px;"><select name="idUser" id="valueId">
 								<%
 									for (int i = 0; i < listUid.size(); i++) {
 										User u = listUid.get(i);
 										if(u.getId() != 0){
 								%>
-								<option value="<%=u.getId()%>"><%=u.getId()%></option>
+								<option value="<%=u.getIdUser()%>"><%=u.getId()%></option>
 								<%
 									}
 									}

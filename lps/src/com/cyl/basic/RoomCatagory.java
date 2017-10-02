@@ -1,38 +1,34 @@
 package com.cyl.basic;
 
-/**
- * 上钟类型的对象
- * @author 0001
- *
- */
-public class ClockCatagory {
+public class RoomCatagory {
 	
-	private int number;
+	private Integer number;
 	private String name;
 	
-	public ClockCatagory() {
-		
+	public RoomCatagory() {
 	}
 	
-
-	public ClockCatagory(int number, String name) {
-		this.number = number;
+	public RoomCatagory(String name){
 		this.name = name;
 	}
 	
-	public int getNumber(){
-		return this.number;
-	}
-
-	public String getName() {
-		return name;
+	public RoomCatagory(int number, String name){
+		this.name = name;
+		this.number = number;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public int getNumber(){
+		return this.getNumber();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -40,7 +36,6 @@ public class ClockCatagory {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -50,7 +45,7 @@ public class ClockCatagory {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClockCatagory other = (ClockCatagory) obj;
+		RoomCatagory other = (RoomCatagory) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -58,6 +53,5 @@ public class ClockCatagory {
 			return false;
 		return true;
 	}
-
 	
 }

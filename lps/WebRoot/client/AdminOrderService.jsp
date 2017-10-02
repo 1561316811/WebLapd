@@ -9,8 +9,8 @@
 		response.sendRedirect("AdminLogIn.jsp");
 	}
 	
-	List<ServerOrder> lists = ServerOrderService.getTodayOrderService();
-	Collections.reverse(lists);
+	//获取今日订单
+	List<ServerOrder> lists = ServerOrderService.getInstance().getUserOrderByStatus(null, 2, null);
 %>
 
 <!DOCTYPE html>

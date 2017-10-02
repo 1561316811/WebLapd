@@ -40,7 +40,8 @@
 	}
 
 	r.setRemark(request.getParameter("remark"));
-	isSuc = RoomService.loadRoom(r);
+	r.setAddTime(new java.sql.Date(System.currentTimeMillis()));
+	isSuc = RoomService.getInstance().load(r);
 	if (isSuc == false) {
 		response.getWriter().write("<p>添加失败：" + r.getIdRoom() + "， 该房间已存在，保存失败\n</p>");
 		response.getWriter().flush();

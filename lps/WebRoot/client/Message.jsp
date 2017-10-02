@@ -6,9 +6,12 @@
 	String idUser = request.getParameter("idUser");
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
 		response.sendRedirect("UserLogIn.jsp");
+		return ;
 	}
-
-	List<ServerOrder> lists = ServerOrderService.getOrderByIdUser1(new User(idUser));
+ 	
+	List<ServerOrder> lists = ServerOrderService.getInstance()
+			.getUserOrderByStatus(new User(idUser), 1, null);
+// System.out.println(lists.size());
 %>
 
 

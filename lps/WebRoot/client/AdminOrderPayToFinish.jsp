@@ -2,7 +2,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.cyl.basic.*"%>
 <%@ page language="java"
-	import="java.util.*,com.cyl.work.*,com.cyl.admin.room.*,com.cyl.admin.paypath.*"
+	import="java.util.*,com.cyl.work.*,com.cyl.admin.room.*"
 	pageEncoding="utf-8"%>
 <%@ page import="com.cyl.util.*"%>
 
@@ -16,10 +16,14 @@
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
 		response.sendRedirect("AdminLogIn.jsp");
 	}
+	ServerOrder so = new ServerOrder.Builder(idOrder)
+					.payPath(payPath)
+					.realPay(realPay)
+					.status(OrderStatusService.getInstance().getOrderStatus(4))
+					.build();
+					
+	ServerOrderService.getInstance().updateOrder(so);
 
-	ServerOrderService.modifyPayPath(idOrder, payPath);
-	ServerOrderService.modifyRelPay(idOrder, realPay);
-	ServerOrderService.modifyStatus(idOrder, "os4");
 %>
 
 <script src="js/jquery.js"></script>

@@ -9,11 +9,14 @@
 	request.setCharacterEncoding("utf-8");
 	String idUser = request.getParameter("idUser");
 	String idOrder = request.getParameter("idOrder");
+
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
 		response.sendRedirect("UserLogIn.jsp");
+		return;
 	}
-	
-	ServerOrder s = ServerOrderService.getOrderByIdOrder(idOrder); //根据订单号获取订单详情
+	//根据订单号获取订单详情
+	ServerOrder s = ServerOrderService.getInstance()
+					.getOrderByIdOrder(idOrder); 
 	
 %>
 

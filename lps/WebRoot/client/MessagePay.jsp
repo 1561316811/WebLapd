@@ -13,13 +13,23 @@
 	int pay = Integer.parseInt(payStr);
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
 		response.sendRedirect("UserLogIn.jsp");
+		return;
 	}
-	
-	ServerOrderService.modifyStatusToPay(idOrder); //修改订单状态
-	ServerOrderService.setEndTimeByIdOrderByUser(idOrder); //设置订单的开始时间
-	ServerOrderService.modifyPay(idOrder, pay);  //修改价钱
-	
-	ServerOrder s = ServerOrderService.getOrderByIdOrder(idOrder); //根据订单号获取订单详情
+	ServerOrder so =
+			new ServerOrder.Builder(idOrder)
+				//修改订单状态
+					.status(OrderStatusService.getInstance()
+							.getOrderStatusByNum(3).getOrderStatus())
+				//修改订单结束时间
+					.endTime(ServerOrderService.getCurTimestamp())
+				//支付价格
+					.pay(new Integer(payStr))
+					.build();
+	//更新数据				
+	ServerOrderService.getInstance().updateOrder(so);
+	//根据订单号获取订单详情
+	ServerOrder s = ServerOrderService.getInstance()
+					.getOrderByIdOrder(idOrder);
 %>
 
 <!DOCTYPE html>

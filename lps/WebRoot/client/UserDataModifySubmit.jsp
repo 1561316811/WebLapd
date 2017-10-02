@@ -22,14 +22,10 @@
 	java.sql.Date d = new java.sql.Date(ud.getTime());
 	
 	user.setBirthday(d);
+	user.setIdUser(idUser);
+
+	isSucss = UserService.getInstance().updateBasic(user);
 	
-	try{
-	UserService.update(idUser, user);
-	
-	}catch(SQLException e){
-		isSucss = false;
-		e.printStackTrace();
-	}
 %>
 
 <!DOCTYPE html>

@@ -43,6 +43,8 @@ CREATE TABLE IF NOT EXISTS `lapd`.`workstatus` (
 ENGINE = InnoDB;
 
 
+
+
 -- -----------------------------------------------------
 -- Table `lapd`.`user`
 -- -----------------------------------------------------
@@ -134,38 +136,6 @@ CREATE TABLE IF NOT EXISTS `lapd`.`clockcatagory` (
   `name` VARCHAR(20) NOT NULL COMMENT '上钟类型',
   PRIMARY KEY (`name`))
 ENGINE = InnoDB
-
-
-go
-DROP TRIGGER IF EXISTS serverorder_AFTER_UPDATE;
-go
-go
-CREATE TRIGGER serverorder_AFTER_UPDATE AFTER UPDATE ON serverorder
-FOR EACH ROW
-BEGIN
-	DECLARE num int ; 
-	if(old.status = '待员工确定' and new.status = '服务中') then
-		 if(old.id not in (select id from workrank )) then
-		 	if (old.clockcatagory <> '点钟') then
-			 	insert into workrank values (old.id, 1, 0);
-			else
-			 	insert into workrank values (old.id, 0, 1);
-			end if;
-         elseif (old.clockcatagory <> '点钟') then 
-			set num = (select rankNum from workrank where workrank.id = old.id);
-            update workrank set rankNum = num + 1 where workrank.id = old.id;
-		 else
-			set num = (select spotNum from workrank where workrank.id = old.id);
-            update workrank set spotNum = num + 1 where workrank.id = old.id;
-		 end if;
-    end if;
-END
-go
-
-
-
-
-
 
 
 drop table if exists `lapd`.`serverorder`;

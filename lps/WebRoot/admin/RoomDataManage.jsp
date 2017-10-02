@@ -1,7 +1,7 @@
-<%@page import="com.cyl.admin.catagory.CatagoryService"%>
-<%@page import="com.cyl.admin.catagory.Catagory"%>
+<%@page import="com.cyl.basic.RoomCatagoryService"%>
+<%@page import="com.cyl.basic.RoomCatagory"%>
 <%@page import="com.cyl.admin.room.*"%>
-<%@ page language="java" import="java.util.*,com.cyl.sql.*, java.sql.*"
+<%@ page language="java" import="java.util.*,com.cyl.sql.*,java.sql.*"
 	pageEncoding="utf-8"%>
 <%@ page import="com.cyl.admin.*"%>
 
@@ -47,7 +47,7 @@
 		pageNum = Integer.parseInt(strStart);
 	}
 
-	msgNum = RoomService.getNum();
+	msgNum = RoomService.getInstance().getNum();
 
 	sumPage = msgNum / size + 1;
 
@@ -61,9 +61,9 @@
 
 	// 	pageNum = startNum / size + 1; //当前页面数
 
-	List<Room> roomList = RoomService.getLimitData(startNum, size);
+	List<Room> roomList = RoomService.getInstance().getLimitData(startNum, size);
 
-	List<Catagory> cataList = CatagoryService.getLimitData(0, CatagoryService.getNum());
+	List<RoomCatagory> cataList = RoomCatagoryService.getInstance().getLimitData(0, RoomCatagoryService.getInstance().getNum());
 
 	// 	System.out.println(msgNum);
 	// 	isOpen = request.getParameter("isMngO");

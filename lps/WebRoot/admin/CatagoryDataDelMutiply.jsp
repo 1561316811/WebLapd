@@ -1,9 +1,8 @@
 <%@ page language="java" import="java.util.*,com.cyl.sql.*, java.sql.*"
 	pageEncoding="utf-8"%>
-<%@ page import="com.cyl.admin.*, com.cyl.admin.catagory.*"%>
+<%@ page import="com.cyl.admin.*,com.cyl.basic.*"%>
 
 <%
-
 	request.setCharacterEncoding("utf-8");
 	
 	String idAdmin = request.getParameter("idAdmin");
@@ -20,10 +19,8 @@
 		
 	}else{
 		for(String n: name){
-			Catagory c = new Catagory(n);
-			CatagoryService.del(c);
+			RoomCatagoryService.getInstance().del(n);
 		}
 		response.sendRedirect("CatagoryDataManage.jsp?idAdmin=" + idAdmin + "&pageNum=" + pageNum);
 	}
-	
 %>

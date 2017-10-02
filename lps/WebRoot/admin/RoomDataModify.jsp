@@ -24,7 +24,7 @@
 <% 
 	Room roomo = new Room(request.getParameter("roomo"));
 	
-	RoomService.modify(roomo, roomn);
+	RoomService.getInstance().modify(roomo, roomn);
 	response.getWriter().write("<p>修改成功\n</p>");
 		
 	response.getWriter().flush();

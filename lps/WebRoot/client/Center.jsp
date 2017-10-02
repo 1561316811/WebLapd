@@ -6,13 +6,12 @@
 	String idUser = request.getParameter("idUser");
 	User u = null;
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
-	System.out.println(request.getRequestURI() + " : " + idUser);
+// 	System.out.println(request.getRequestURI() + " : " + idUser);
 		response.sendRedirect("UserLogIn.jsp");
 		return;
 	}
-	u = UserService.getByID(idUser);
+	u = UserService.getInstance().getUserByIdUser(idUser);
 %>
-
 
 <!DOCTYPE html>
 <html>

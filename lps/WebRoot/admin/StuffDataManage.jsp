@@ -1,5 +1,5 @@
-<%@page import="com.cyl.admin.catagory.CatagoryService"%>
-<%@page import="com.cyl.admin.catagory.Catagory"%>
+<%@page import="com.cyl.basic.RoomCatagoryService"%>
+<%@page import="com.cyl.basic.RoomCatagory"%>
 <%@page import="com.cyl.admin.room.*"%>
 <%@ page language="java" import="java.util.*,com.cyl.sql.*, java.sql.*"
 	pageEncoding="utf-8"%>
@@ -34,7 +34,7 @@
 		pageNum = Integer.parseInt(strStart);
 	}
 
-	msgNum = UserService.getNum();
+	msgNum = UserService.getInstance().getNum();
 
 	sumPage = msgNum / size + 1;
 
@@ -48,7 +48,7 @@
 
 	// 	pageNum = startNum / size + 1; //当前页面数
 
-	List<User> list = UserService.getLimitData(startNum, size);
+	List<User> list = UserService.getInstance().getLimitData(startNum, size);
 %>
 <!doctype html>
 <html>

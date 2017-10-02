@@ -8,7 +8,7 @@ public class User {
 	
 	private String password;
 	
-	private int id;
+	private Integer id;
 	
 	private Date birthday;
 	
@@ -37,7 +37,7 @@ public class User {
 	}
 	
 	
-	public User(String idUser, String password, int id, Date birthday, String telPhone, String email, String address,
+	public User(String idUser, String password, Integer id, Date birthday, String telPhone, String email, String address,
 			String imagePath, String question, String answer, Date addTime, String workStatus) {
 		super();
 		this.idUser = idUser;
@@ -54,6 +54,22 @@ public class User {
 		this.workStatus = workStatus;
 	}
 
+	
+	public User(Builder b) {
+		super();
+		this.idUser = b.idUser;
+		this.password = b.password;
+		this.id = b.id;
+		this.birthday = b.birthday;
+		this.telPhone = b.telPhone;
+		this.email = b.email;
+		this.address = b.address;
+		this.imagePath = b.imagePath;
+		this.question = b.question;
+		this.answer = b.answer;
+		this.addTime = b.addTime;
+		this.workStatus = b.workStatus;
+	}
 
 	public String getWorkStatus() {
 		return workStatus;
@@ -115,11 +131,11 @@ public class User {
 		this.password = password;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -161,6 +177,106 @@ public class User {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idUser == null) ? 0 : idUser.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (idUser == null) {
+			if (other.idUser != null)
+				return false;
+		} else if (!idUser.equals(other.idUser))
+			return false;
+		return true;
+	}
+	
+	public static class Builder{
+		
+		private String idUser;
+		
+		public Builder idUser(String idUser){
+			this.idUser = idUser;
+			return this;
+		}
+		
+		private String password;
+		
+		public Builder password(String password){
+			this.password = password;
+			return this;
+		}
+		
+		private Integer id;
+		
+		public Builder id(Integer id){
+			this.id = id;
+			return this;
+		}
+		private Date birthday;
+		public Builder birthday(Date birthday){
+			this.birthday = birthday;
+			return this;
+		}
+		private String telPhone;
+		public Builder telPhone(String telPhone){
+			this.telPhone = telPhone;
+			return this;
+		}
+		private String email;
+		public Builder email(String email){
+			this.email = email;
+			return this;
+		}
+		private String address;
+		public Builder address(String address){
+			this.address = address;
+			return this;
+		}
+		private String imagePath;
+		public Builder imagePath(String imagePath){
+			this.imagePath = imagePath;
+			return this;
+		}
+		private String question;
+		public Builder question(String question){
+			this.question = question;
+			return this;
+		}
+		private String answer;
+		public Builder answer(String answer){
+			this.answer = answer;
+			return this;
+		}
+		private Date addTime;
+		public Builder addTime(Date addTime){
+			this.addTime = addTime;
+			return this;
+		}
+		private String workStatus;
+		public Builder workStatus(String workStatus){
+			this.workStatus = workStatus;
+			return this;
+		}
+		
+		public Builder(String idUser) {
+			this.idUser = idUser;
+		}
+		
+		
 	}
 	
 	

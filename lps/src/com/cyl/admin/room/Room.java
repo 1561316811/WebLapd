@@ -24,7 +24,15 @@ public class Room {
 		this.idRoom = idRoom;
 	}
 	
-
+	/**
+	 * 
+	 * @param idRoom idRoom
+	 * @param category category
+	 * @param floor floor
+	 * @param size size
+	 * @param remark remark
+	 * @param addTime addTime
+	 */
 	public Room(String idRoom, String category, int floor, int size, String remark, Date addTime) {
 		super();
 		this.idRoom = idRoom;
@@ -83,13 +91,32 @@ public class Room {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idRoom == null) ? 0 : idRoom.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Room other = (Room) obj;
+		if (idRoom == null) {
+			if (other.idRoom != null)
+				return false;
+		} else if (!idRoom.equals(other.idRoom))
+			return false;
+		return true;
+	}
 	
 	
 	
-//	`idRoom` VARCHAR(10) NOT NULL COMMENT '房间编号',
-//	  `catagory` VARCHAR(45) NULL COMMENT '房间名字',
-//	  `floor` INT NULL COMMENT '房间楼层',
-//	  `size` INT NULL COMMENT '房间可容纳客人的人数',
-//	  `remark` VARCHAR(255) NULL COMMENT '房间描述',
-//	  PRIMARY KEY (`idRoom`))
 }

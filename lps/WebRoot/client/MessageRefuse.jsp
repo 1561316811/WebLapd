@@ -11,11 +11,18 @@
 	String idOrder = request.getParameter("idOrder");
 	if (idUser == null || session.getAttribute(idUser) == null) { //检查如果没有登入，即返回登入界面
 		response.sendRedirect("UserLogIn.jsp");
+		return;
 	}
-
-	ServerOrderService.modifyStatusToReceive(idOrder); //修改订单状态
-	ServerOrderService.setStartTimeByIdOrderByUser(idOrder); //设置订单的开始时间
-	ServerOrder s = ServerOrderService.getOrderByIdOrder(idOrder); //根据订单号获取时间
+	ServerOrder so = new ServerOrder.Builder(idOrder)
+	//修改订单状态
+	.status(OrderStatusService.getInstance().getOrderStatusByNum(1).getOrderStatus())
+	//设置订单的开始时间
+	.startTime(ServerOrderService.getCurTimestamp())
+	.build();
+	
+	//根据订单号获取时间
+	ServerOrder s = ServerOrderService.getInstance().getOrderByIdOrder(idOrder);
+	
 %>
 
 <!DOCTYPE html>
