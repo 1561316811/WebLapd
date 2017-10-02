@@ -43,6 +43,8 @@ CREATE TABLE IF NOT EXISTS `lapd`.`workstatus` (
 ENGINE = InnoDB;
 
 
+
+
 -- -----------------------------------------------------
 -- Table `lapd`.`user`
 -- -----------------------------------------------------
