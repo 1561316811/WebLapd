@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+html { text-size-adjust: 100%; }
+
+body { line-height: 1.6; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+body, dd, dl, fieldset, h1, h2, h3, h4, h5, ol, p, ul { margin: 0px; }
+
+button, fieldset, input, legend, textarea { padding: 0px; }
+
+button, input, select, textarea { font-family: inherit; font-size: 100%; margin: 0px; }
+
+ol, ul { padding-left: 0px; list-style-type: none; list-style-position: inside; }
+
+a img, fieldset { border: 0px; }
+
+
+
+body { background-color: rgb(255, 255, 255); font-size: 14px; }
+
+.list .item { position: relative; }
+
+.list .item::after { content: " "; position: absolute; left: 0px; top: 0px; width: 200%; height: 1px; border-top: 1px solid rgb(188, 186, 182); transform-origin: 0px 0px 0px; transform: scale(0.5); }
+
+.list .item:first-child::after { border: 0px; }
+
+.list .item.no_extra { text-align: center; border-bottom: 0px none; padding: 16px; }
+
+.list .item.no_extra img { width: 16px; height: 16px; vertical-align: middle; margin-top: -1px; }
+
+.list .item a { display: block; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 16px; color: rgb(0, 0, 0); }
+
+.list .item a:active { background-color: rgb(248, 247, 245); }
+
+.list .title { font-size: 16px; line-height: 20px; margin-bottom: 7px; width: 9em; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+
+.list .time { font-size: 13px; line-height: 13px; color: rgb(136, 136, 136); }
+
+.list .sum { position: absolute; right: 16px; top: 50%; margin-top: -10px; font-size: 21px; line-height: 21px; }
+
+.blank { padding: 30px; font-size: 13px; text-align: center; margin: 30px 5px; }
+
